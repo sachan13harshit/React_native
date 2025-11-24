@@ -21,6 +21,8 @@ app.use(cors({
 
 // Routes
 app.use('/api/auth', authRoutes);
+import productRoutes from './routes/products.js';
+app.use('/api/products', productRoutes);
 
 // Test route to verify server is running
 app.get('/', (req, res) => {

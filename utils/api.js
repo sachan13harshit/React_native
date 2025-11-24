@@ -21,10 +21,10 @@ export const getToken = async () => {
   }
 };
 
-export const saveToken = async(token) => {
+export const saveToken = async (token) => {
   try {
-      await AsyncStorage.setItem('authToken', token)
-      return token
+    await AsyncStorage.setItem('authToken', token)
+    return token
   } catch (error) {
     console.error("Token cannot be Saved")
     return null
@@ -76,11 +76,11 @@ const apiRequest = async (
     }
 
     const response = await fetch(url, config);
-    
+
     // Check if response is JSON
     const contentType = response.headers.get("content-type");
     let data;
-    
+
     try {
       if (contentType && contentType.includes("application/json")) {
         data = await response.json();
@@ -88,7 +88,7 @@ const apiRequest = async (
         // If not JSON, get text response (likely HTML error page)
         const text = await response.text();
         console.error("Non-JSON response received:", text.substring(0, 200));
-        
+
         if (!response.ok) {
           throw new Error(`Server error: ${response.status} ${response.statusText}. Please check if the server is running at ${url}`);
         }
@@ -142,5 +142,14 @@ export const authApi = {
   logout: async () => {
     await removeToken();
     return { success: true, message: "Logged out successfully" };
+  },
+};
+
+export const productApi = {
+  getAllProducts: async (query = "") => {
+    return apiRequest(`/api/products${query}`, "GET");
+  },
+  getProductById: async (id) => {
+    return apiRequest(`/api/products/${id}`, "GET");
   },
 };
