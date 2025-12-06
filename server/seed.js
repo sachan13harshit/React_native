@@ -15,6 +15,8 @@ const seedProducts = [
     { name: 'Carrot kg', price: 35, imageUrl: 'https://via.placeholder.com/150', category: 'Vegetables', stock: 80 }
 ];
 
+
+
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(async () => {
         console.log('Connected to mongo — seeding...');
@@ -27,3 +29,8 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
         console.error(err);
         process.exit(1);
     });
+
+mongoose.connect(MONGO_URI, { useNewUrlParser: true , useUnifiedTopology: true})
+    .then(async () => {
+
+    })
